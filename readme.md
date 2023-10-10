@@ -35,13 +35,17 @@ se crear en la carpeta app el archivo composer.json
         }
     }
 
+# <span style="color: #e70b0b"> Si al iniciar el contenedor, no se conecta a Mongo, se debe crear nuevamente la carpeta 'vendor' desde aquí!! </span>
+
+Fuente: https://www.iteramos.com/pregunta/30538/como-anadir-color-al-archivo-readmemd-de-github
+
 ## Conectar al contenedor de PHP
 ```docker exec -it nginx-php-mongo bash```
 
 ## Instalar las librerias de PHP requeridas por mongoDb con Composer
 ```composer install```
 
--- esta acciónc reará la carpeta VENDOR con las dependencia necesarias y ela rchivo autoload.php
+-- esta acción creará la carpeta VENDOR con las dependencia necesarias y ela rchivo autoload.php
 
 # Agregar la imagen de MongoDB al docker-compose.yml
 - detener el lanzador
