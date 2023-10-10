@@ -40,3 +40,52 @@ se crear en la carpeta app el archivo composer.json
 
 ## Instalar las librerias de PHP requeridas por mongoDb con Composer
 ```composer install```
+
+-- esta acciónc reará la carpeta VENDOR con las dependencia necesarias y ela rchivo autoload.php
+
+# Agregar la imagen de MongoDB al docker-compose.yml
+- detener el lanzador
+  - ```docker-compose down```
+## agregar la imagen de mongoDB al docker-compose.yml
+- se arega el servidor de mongo, en particular la alternativa gratuita de mongoDB Atlas
+- Percona Server for MongoDB 
+- https://www.percona.com/doc/percona-server-for-mongodb/LATEST/install/docker.html
+
+```
+  mongodb:
+  image: "percona/percona-server-mongodb:6.0.4"
+  volumes:
+  - ./data:/data/db
+  restart: always
+  environment:
+  MONGO_INITDB_ROOT_USERNAME: root
+  MONGO_INITDB_ROOT_PASSWORD: secret
+  MONGO_INITDB_DATABASE: tutorial
+  ports:
+  - "27017:27017"
+```
+
+## tambien se debe modificar el servicio php
+
+```
+  php-fpm:
+  image: nginx-php-mongo
+  volumes:
+  - ./app:/var/www/html
+  environment:
+  DB_USERNAME: root
+  DB_PASSWORD: secret
+  DB_HOST: mongodb # matches the service with mongodb
+```
+
+- iniciar el lanzador
+  - ```docker-compose up -d```
+
+## Crear archvio de prueba de mongo.php 
+
+El codigo fuente de este archivo se encuentra en la carpeta app, escribirá 1000 documentos.
+
+## Instalar MongoDB Compass
+https://www.mongodb.com/try/download/compass
+Usar hosr: localhost y puerto 27017
+los datos de usuario y pass se encuentra en el archvio docker-compose.yml

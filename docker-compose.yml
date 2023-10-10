@@ -13,3 +13,19 @@ services:
     image: nginx-php-mongo
     volumes:
       - ./app:/var/www/html
+    environment:
+      DB_USERNAME: root
+      DB_PASSWORD: secret
+      DB_HOST: mongodb # matches the service with mongodb
+
+  mongodb:
+    image: "percona/percona-server-mongodb:6.0.4"
+    volumes:
+      - ./data:/data/db
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: secret
+      MONGO_INITDB_DATABASE: tutorial
+    ports:
+      - "27017:27017"
