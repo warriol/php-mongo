@@ -15,7 +15,7 @@ services:
       - ./app:/var/www/html
     environment:
       DB_USERNAME: root
-      DB_PASSWORD: secret
+      DB_PASSWORD: root
       DB_HOST: mongodb # matches the service with mongodb
 
   mongodb:
@@ -25,7 +25,7 @@ services:
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: secret
-      MONGO_INITDB_DATABASE: tutorial
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: nosql
     ports:
       - "27017:27017"
